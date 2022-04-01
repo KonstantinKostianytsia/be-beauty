@@ -4,6 +4,7 @@ import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
+import {Observer} from 'mobx-react';
 
 const AuthorizationScreen = () => {
   const onPressSignWithGoogle = () => {
@@ -25,14 +26,17 @@ const AuthorizationScreen = () => {
   };
 
   return (
-    <View>
-      <GoogleSigninButton
-        style={{width: 192, height: 48}}
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Dark}
-        onPress={onPressSignWithGoogle}
-      />
-    </View>
+    <Observer>
+      {() => (
+        <View>
+          <GoogleSigninButton
+            size={GoogleSigninButton.Size.Icon}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={onPressSignWithGoogle}
+          />
+        </View>
+      )}
+    </Observer>
   );
 };
 

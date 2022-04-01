@@ -15,6 +15,8 @@ module.exports = {
           screens: './src/screens',
           services: './src/services',
           stores: './src/stores',
+          constants: './src/constants',
+          helpers: './src/helpers',
         },
       },
     ],

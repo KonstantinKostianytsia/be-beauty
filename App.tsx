@@ -1,20 +1,36 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {RootStack} from './src/navigation/rootStack';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {configurePersistable} from 'mobx-persist-store';
+
+import {RootStack} from './src/navigation/rootStack';
+import {StoreProvider} from './src/stores/rootStoreContext';
+import rootStore from './src/stores';
+import {IOS_CLIENT_ID} from './src/constants/ClientIds';
 
 const App = () => {
   useEffect(() => {
+    configurePersistable(
+      {
+        stringify: true,
+        debugMode: true,
+      },
+      {delay: 200, fireImmediately: false},
+    );
+  }, []);
+
+  useEffect(() => {
     GoogleSignin.configure({
-      iosClientId:
-        '84423765352-d9laqf200kevh40o1as0ufof4plk7lu2.apps.googleusercontent.com',
+      iosClientId: IOS_CLIENT_ID,
     });
   }, []);
 
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <StoreProvider value={rootStore}>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </StoreProvider>
   );
 };
 
