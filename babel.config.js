@@ -4,10 +4,9 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src'],
+        root: ['.'],
         alias: {
           src: './src',
-          assets: './src/assets',
           components: './src/components',
           localization: './src/localization',
           models: './src/models',
@@ -17,6 +16,8 @@ module.exports = {
           stores: './src/stores',
           constants: './src/constants',
           helpers: './src/helpers',
+          styles: './src/styles',
+          assets: './assets',
         },
       },
     ],

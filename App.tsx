@@ -7,6 +7,7 @@ import {RootStack} from './src/navigation/rootStack';
 import {StoreProvider} from './src/stores/rootStoreContext';
 import rootStore from './src/stores';
 import {IOS_CLIENT_ID} from './src/constants/ClientIds';
+import {ThemeProvider, themeContext} from './src/styles';
 
 const App = () => {
   useEffect(() => {
@@ -27,9 +28,11 @@ const App = () => {
 
   return (
     <StoreProvider value={rootStore}>
-      <NavigationContainer>
-        <RootStack />
-      </NavigationContainer>
+      <ThemeProvider value={themeContext}>
+        <NavigationContainer>
+          <RootStack />
+        </NavigationContainer>
+      </ThemeProvider>
     </StoreProvider>
   );
 };

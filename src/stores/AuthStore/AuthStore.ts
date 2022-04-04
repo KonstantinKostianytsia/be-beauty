@@ -23,4 +23,8 @@ export class AuthStore {
   setAccessToken(value: string) {
     this.accessToken = value;
   }
+
+  get isAuthorized() {
+    return this.accessToken && this.accessToken.length > 0;
+  }
 }

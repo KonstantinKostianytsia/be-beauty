@@ -38,18 +38,19 @@
 
     /* Module Resolution Options */
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
-    "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
+    "baseUrl": "." /* Base directory to resolve non-absolute module names. */,
     "paths": {
-      "assets/*": ["assets/*"],
-      "components/*": ["components/*"],
-      "localization/*": ["localization/*"],
-      "models/*": ["models/*"],
-      "navigation/*": ["navigation/*"],
-      "screens/*": ["screens/*"],
-      "services/*": ["services/*"],
-      "stores/*": ["stores/*"],
-      "constants/*": ["constants/*"],
-      "helpers/*": ["helpers/*"]
+      "components/*": ["./src/components/*"],
+      "localization/*": ["./src/localization/*"],
+      "models/*": ["./src/models/*"],
+      "navigation/*": ["./src/navigation/*"],
+      "screens/*": ["./src/screens/*"],
+      "services/*": ["./src/services/*"],
+      "stores/*": ["./src/stores/*"],
+      "constants/*": ["./src/constants/*"],
+      "helpers/*": ["./src/helpers/*"],
+      "styles/*": ["./src/styles/*"],
+      "assets/*": ["./assets/*"]
     } /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */

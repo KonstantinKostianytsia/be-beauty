@@ -5,5 +5,15 @@ export enum RootStackRoutes {
 
 export enum AuthorizationStackRoutes {
   Authorization = 'Authorization',
-  Registration = 'Registration',
+}
+
+export enum MainTabRoutes {
+  CreateAppointmentTab = 'CreateAppointmentTab',
+  AppointmentsListTab = 'AppointmentsListTab',
+  ProfileTab = 'ProfileTab',
+  MapTab = 'MapTab',
+}
+
+export enum CreateAppointmentsStackRoutes {
+  MapSelectSalon = 'MapSelectSalon',
 }
