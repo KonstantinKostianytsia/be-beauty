@@ -5,4 +5,8 @@ export interface IImages {
   list: ImageSourcePropType;
   profile: ImageSourcePropType;
   mapMarker: ImageSourcePropType;
+  authImage: ImageSourcePropType;
+  googleIcon: ImageSourcePropType;
+  facebookIcon: ImageSourcePropType;
+  appleIcon: ImageSourcePropType;
 }

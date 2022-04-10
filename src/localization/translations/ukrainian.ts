@@ -4,4 +4,5 @@ export const ukrainianTranslations = {
   appointmentsListTab: 'Переглянути',
   profileTab: 'Профіль',
   mapTab: 'Наші пункти',
+  loginInviteText: 'Щоб продовжити оберіть зручний спосіб авторизації',
 };

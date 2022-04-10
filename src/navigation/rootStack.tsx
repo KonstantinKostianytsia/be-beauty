@@ -4,6 +4,7 @@ import {AuthorizationStack} from './Authorization/AuthorizationStack';
 import MainTabNavigator from './Main/MainTabNavigator';
 import {RootStackRoutes} from './routes';
 import {useAuthStore} from 'helpers/hooks/useStore';
+import CustomHeader from 'components/organizms/Header';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,6 +13,9 @@ export const RootStack = () => {
 
   return (
     <Stack.Navigator
+      screenOptions={{
+        header: CustomHeader,
+      }}
       initialRouteName={
         authStore.isAuthorized ? RootStackRoutes.Main : RootStackRoutes.Auth
       }>

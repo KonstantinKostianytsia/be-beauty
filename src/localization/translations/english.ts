@@ -4,4 +4,5 @@ export const englishTranslations = {
   appointmentsListTab: 'View',
   profileTab: 'Profile',
   mapTab: 'See Map',
+  loginInviteText: 'Select a way to authorize to continue',
 };
