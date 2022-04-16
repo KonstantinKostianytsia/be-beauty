@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {configurePersistable} from 'mobx-persist-store';
+import SplashScreen from 'react-native-splash-screen';
 
 import {RootStack} from './src/navigation/rootStack';
 import {StoreProvider} from './src/stores/rootStoreContext';
@@ -18,6 +19,7 @@ const App = () => {
       },
       {delay: 200, fireImmediately: false},
     );
+    SplashScreen.hide();
   }, []);
 
   useEffect(() => {
