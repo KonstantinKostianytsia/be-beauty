@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Platform, View} from 'react-native';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {Observer} from 'mobx-react';
@@ -10,10 +10,12 @@ import CustomImage from 'components/atoms/CustomImage';
 import ButtonWithIcon from 'components/moleculs/ButtonWithIcon';
 import Texts from 'components/atoms/Text';
 import localization from 'localization/index';
+import {AuthVariant} from 'models/stores/auth/AuthStoreModels';
+import {RootStackRoutes} from 'navigation/routes';
 
 const SOCIAL_BUTTON_SIZE = 40;
 
-const AuthorizationScreen = () => {
+const AuthorizationScreen = props => {
   const authStore = useAuthStore();
   const theme = useTheme();
 
@@ -38,6 +40,54 @@ const AuthorizationScreen = () => {
     );
   };
 
+  const authorize = (authVariant: AuthVariant, userInfo: any) => {
+    let email = '',
+      firstName = '',
+      lastName = '';
+
+    switch (authVariant) {
+      case AuthVariant.GOOGLE:
+        email = userInfo.user.email;
+        lastName = userInfo.user.familyName;
+        firstName = userInfo.user.givenName;
+        break;
+    }
+
+    const onAuthSuccess = () => {
+      props.navigation.navigate(RootStackRoutes.Main);
+    };
+
+    authStore
+      .authorize({
+        authVariant,
+        email,
+      })
+      .then(() => {
+        onAuthSuccess();
+      })
+      .catch(err => {
+        if (err.status === 404) {
+          authStore
+            .createAccount({
+              authVariant,
+              email,
+              firstName,
+              lastName,
+            })
+            .then(() => {
+              authStore
+                .authorize({
+                  authVariant,
+                  email,
+                })
+                .then(() => {
+                  onAuthSuccess();
+                });
+            });
+        }
+      });
+  };
+
   const renderGoogleButton = () => {
     const onPressSignWithGoogle = () => {
       GoogleSignin.hasPlayServices()
@@ -45,7 +95,7 @@ const AuthorizationScreen = () => {
           if (hasPlayService) {
             GoogleSignin.signIn()
               .then(userInfo => {
-                console.log(JSON.stringify(userInfo));
+                authorize(AuthVariant.GOOGLE, userInfo);
               })
               .catch(e => {
                 console.log('ERROR IS: ' + JSON.stringify(e));
