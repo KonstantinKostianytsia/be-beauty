@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 export const CreateAppointmentsStack = () => (
   <Stack.Navigator
     screenOptions={{
-      header: CustomHeader,
+      header: props => <CustomHeader {...props} />,
     }}
     initialRouteName={CreateAppointmentsStackRoutes.MapSelectSalon}>
     <Stack.Screen

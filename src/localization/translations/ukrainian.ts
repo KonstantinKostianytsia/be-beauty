@@ -5,4 +5,12 @@ export const ukrainianTranslations = {
   profileTab: 'Профіль',
   mapTab: 'Наші пункти',
   loginInviteText: 'Щоб продовжити оберіть зручний спосіб авторизації',
+  headers: {
+    createAppointment: {
+      selectSalon: 'Оберіть салон',
+    },
+    appointmentList: 'Істоія візитів',
+    infoTab: 'Про нас',
+    profileTab: 'Профіль',
+  },
 };

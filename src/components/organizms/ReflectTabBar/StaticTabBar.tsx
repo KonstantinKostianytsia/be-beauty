@@ -1,15 +1,15 @@
 import React from 'react';
 import {ITab} from 'models/screens/MainScreenTabs';
+import {Animated, TouchableWithoutFeedback, View, Image} from 'react-native';
 import {
-  Animated,
-  TouchableWithoutFeedback,
-  View,
-  Image,
-  Dimensions,
-} from 'react-native';
-import styles, {getActiveIconStyles, getTabContainerStyles} from './styles';
+  getActiveIconStyles,
+  getIconCircle,
+  getTabContainerStyles,
+} from './styles';
+import {useTheme} from 'helpers/hooks/useTheme';
+import {getWindowDimensions} from 'helpers/dimensionsHelper';
 
-const {width} = Dimensions.get('window');
+const {width} = getWindowDimensions();
 const IMAGE_WIDTH = 25;
 const IMAGE_HEIGHT = 27;
 export const TAB_BAR_HEIGHT = 64;
@@ -23,6 +23,7 @@ interface StaticTabBarProps {
 export const StaticTabBar = (props: StaticTabBarProps) => {
   const {tabs} = props;
   const tabWidth = width / tabs.length;
+  const theme = useTheme();
 
   const values: Animated.Value[] = tabs.map(
     (tab, index) => new Animated.Value(index === 0 ? 1 : 0),
@@ -30,8 +31,6 @@ export const StaticTabBar = (props: StaticTabBarProps) => {
 
   const onPress = (index: number) => {
     const {value} = props;
-
-    props.onPress(index);
 
     Animated.sequence([
       ...values.map(animated =>
@@ -52,6 +51,9 @@ export const StaticTabBar = (props: StaticTabBarProps) => {
         }),
       ]),
     ]).start();
+    setTimeout(() => {
+      props.onPress(index);
+    }, 500);
   };
 
   return (
@@ -69,6 +71,7 @@ export const StaticTabBar = (props: StaticTabBarProps) => {
                   index,
                 )}>
                 <Image
+                  resizeMode="contain"
                   style={{width: IMAGE_WIDTH, height: IMAGE_HEIGHT}}
                   source={tab.icon}
                 />
@@ -81,8 +84,9 @@ export const StaticTabBar = (props: StaticTabBarProps) => {
                 index,
                 activeValue,
               )}>
-              <View style={styles.circle}>
+              <View style={getIconCircle(theme.colors.white, IMAGE_WIDTH * 2)}>
                 <Image
+                  resizeMode="contain"
                   style={{width: IMAGE_WIDTH, height: IMAGE_HEIGHT}}
                   source={tab.icon}
                 />

@@ -11,7 +11,7 @@ export enum MainTabRoutes {
   CreateAppointmentTab = 'CreateAppointmentTab',
   AppointmentsListTab = 'AppointmentsListTab',
   ProfileTab = 'ProfileTab',
-  MapTab = 'MapTab',
+  InfoTab = 'InfoTab',
 }
 
 export enum CreateAppointmentsStackRoutes {

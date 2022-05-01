@@ -4,4 +4,5 @@ export interface IColors {
   pink: string;
   textColorBlack: string;
   textColorWhite: string;
+  headerPink: string;
 }

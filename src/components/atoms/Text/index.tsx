@@ -25,12 +25,15 @@ interface TextTemplateProps extends TextProps {
 const TextTemplate = (props: TextTemplateProps) => {
   return (
     <Text
-      style={{
-        fontWeight: props.weight,
-        fontSize: props.size,
-        lineHeight: props.lineHeight,
-        fontFamily: props.font ? props.font : DEFAULT_FONT_FAMILY,
-      }}>
+      style={[
+        {
+          fontWeight: props.weight,
+          fontSize: props.size,
+          lineHeight: props.lineHeight,
+          fontFamily: props.font ? props.font : DEFAULT_FONT_FAMILY,
+        },
+        props.style,
+      ]}>
       {props.children}
     </Text>
   );
@@ -38,7 +41,15 @@ const TextTemplate = (props: TextTemplateProps) => {
 
 const InterBigBold = (props: TextProps) => {
   return (
-    <TextTemplate weight="bold" size={24} lineHeight={29}>
+    <TextTemplate {...props} weight="bold" size={24} lineHeight={29}>
+      {props.children}
+    </TextTemplate>
+  );
+};
+
+const InterMediumSemiBold = (props: TextProps) => {
+  return (
+    <TextTemplate {...props} weight="500" size={18} lineHeight={24}>
       {props.children}
     </TextTemplate>
   );
@@ -46,7 +57,7 @@ const InterBigBold = (props: TextProps) => {
 
 const InterSmallBold = (props: TextProps) => {
   return (
-    <TextTemplate weight="600" size={13} lineHeight={16}>
+    <TextTemplate {...props} weight="600" size={13} lineHeight={16}>
       {props.children}
     </TextTemplate>
   );
@@ -54,7 +65,7 @@ const InterSmallBold = (props: TextProps) => {
 
 const InterSmallLight = (props: TextProps) => {
   return (
-    <TextTemplate weight="300" size={13} lineHeight={16}>
+    <TextTemplate {...props} weight="300" size={13} lineHeight={16}>
       {props.children}
     </TextTemplate>
   );
@@ -62,6 +73,7 @@ const InterSmallLight = (props: TextProps) => {
 
 export default {
   InterBigBold,
+  InterMediumSemiBold,
   InterSmallBold,
   InterSmallLight,
 };

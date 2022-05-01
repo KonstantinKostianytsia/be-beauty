@@ -15,14 +15,22 @@ const styles = StyleSheet.create({
     top: -8,
   },
   circle: {
-    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 50,
-    height: 50,
-    borderRadius: 25,
   },
 });
+
+export const getIconCircle = (bgColor: string, size: number) => {
+  return [
+    styles.circle,
+    {
+      backgroundColor: bgColor,
+      width: size,
+      height: size,
+      borderRadius: size / 2,
+    },
+  ];
+};
 
 export const getActiveIconStyles = (
   width: number,

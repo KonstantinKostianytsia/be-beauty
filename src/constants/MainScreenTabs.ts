@@ -21,7 +21,7 @@ export const getTabs = (icons: IImages): Array<ITab> => {
       icon: icons.profile,
     },
     {
-      name: MainTabRoutes.MapTab,
+      name: MainTabRoutes.InfoTab,
       displayedName: translations.mapTab,
       icon: icons.mapMarker,
     },
